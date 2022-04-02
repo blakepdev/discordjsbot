@@ -15,4 +15,5 @@ client.on('ready', () => {
     handler(client)
 });
 
+
 client.login(process.env.TOKEN);
