@@ -43,6 +43,10 @@ module.exports = (client) => {
     
                 console.log('updated json')
             });
+        }else if(!message.author.bot && message.content.toLowerCase().includes("you're") || message.content.toLowerCase().includes("ur a") || message.content.toLowerCase().includes("you are")){
+            message.reply({
+                content: 'no u'
+            })
         }else if(message.author.bot || !message.content.startsWith(process.env.PREFIX)){
             return
         }
@@ -51,13 +55,11 @@ module.exports = (client) => {
         const commandName = args.shift().toLowerCase();
 
         if(!commands[commandName]){
-            console.log(commandName);
             return
         }
 
         try{
             commands[commandName].callback(message, ...args);
-            console.log(commandName);
         } catch (error){
             console.error(error);
         }
