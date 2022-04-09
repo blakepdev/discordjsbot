@@ -1,6 +1,5 @@
 const fetch = require('node-fetch');
-const api_url = 'https://api.thecatapi.com/v1/images/search'
-const command_handler = require('./../command-handler.js')
+const api_url = 'https://dog.ceo/api/breeds/image/random'
 
 module.exports = {
     callback: (message, args) => {
@@ -13,5 +12,5 @@ module.exports = {
 async function getCat(){
     const api_response = await fetch(api_url);
     const json = await api_response.json();
-    return Promise.resolve(json[0].url)
+    return Promise.resolve(json.message)
 }
