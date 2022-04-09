@@ -5,6 +5,8 @@ const vars = require('./vars.json');
 
 const commands = {};
 
+const test = "test"
+
 module.exports = (client) => {
     const suffix = '.js';
     const commandFiles = getFiles('./commands', suffix);
@@ -18,7 +20,8 @@ module.exports = (client) => {
 
         commands[commandName.toLowerCase()] = commandFile;
     }
-    console.log(commands)
+
+    console.log('My commands are ' + Object.keys(commands))
 
     client.on('messageCreate', (message) => {
         
@@ -66,7 +69,3 @@ module.exports = (client) => {
 
     })
 }
-
-exports.getCommands = function() {
-    return commands;
-};
