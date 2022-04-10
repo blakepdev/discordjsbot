@@ -6,6 +6,8 @@ const client = new Client({
     ]
 });
 require('dotenv').config();
+const swanson = require('./swansonquote.js')
+
 const fs = require('fs')
 const vars = require('./vars.json')
 client.commands = new Collection()
@@ -18,6 +20,7 @@ for(file of commands){
 
 client.on('ready', () => {
     console.log("Discord bot is online and ready.")
+    swanson(client)
 });
 
 client.on('messageCreate', (message) => {
@@ -62,6 +65,5 @@ client.on('messageCreate', (message) => {
 
 
 })
-
 
 client.login(process.env.TOKEN);
