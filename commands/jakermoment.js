@@ -1,29 +1,31 @@
 const vars = require('./../vars.json');
 const fs = require('fs')
 
-module.exports = {
-    callback: (message, ...args) => {
-        console.log(args);
-        if(args[0] === 'add'){
-            message.reply({
-                content: 'Added another Jaker moment to the counter'
-            })
+exports.run = (client, message, args) => {
+    console.log(args);
+    if(args[0] === 'add'){
+        message.reply({
+            content: 'Added another Jaker moment to the counter'
+        })
 
-            vars.jakermoment++;
+        vars.jakermoment++;
 
-            fs.writeFile("vars.json", JSON.stringify(vars), err => {
-                if (err) throw err;
-    
-                console.log('updated json')
-            });
-        }else if(args[0] === 'view'){
-            message.reply({
-                content: 'There has been a total of ' + vars.jakermoment.toString() + ' Jaker moments since this bot has started'
-            })            
-        }else{
-            message.reply({
-                content: 'Please use either add or view after the command'
-            })      
-        }
+        fs.writeFile("vars.json", JSON.stringify(vars), err => {
+            if (err) throw err;
+
+            console.log('updated json')
+        });
+    }else if(args[0] === 'view'){
+        message.reply({
+            content: 'There has been a total of ' + vars.jakermoment.toString() + ' Jaker moments since this bot has started'
+        })            
+    }else{
+        message.reply({
+            content: 'Please use either add or view after the command'
+        })      
     }
 }
+
+
+exports.name = "jakermoment"
+exports.desc = "See how many times someone has pulled a jaker moment (joining and deafening)"

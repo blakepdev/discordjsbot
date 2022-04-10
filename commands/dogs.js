@@ -1,12 +1,10 @@
 const fetch = require('node-fetch');
 const api_url = 'https://dog.ceo/api/breeds/image/random'
 
-module.exports = {
-    callback: (message, args) => {
-        getCat().then(result => message.reply({
-            content: result
-        }))
-    }
+exports.run = (client, message, args) => {
+    getCat().then(result => message.reply({
+        content: result
+    }))
 }
 
 async function getCat(){
@@ -14,3 +12,6 @@ async function getCat(){
     const json = await api_response.json();
     return Promise.resolve(json.message)
 }
+
+exports.name = "dogs"
+exports.desc = "Get a random dog picture"
